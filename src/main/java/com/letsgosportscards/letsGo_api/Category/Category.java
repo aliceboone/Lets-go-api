@@ -1,0 +1,59 @@
+package com.letsgosportscards.letsGo_api.Category;
+
+import javax.persistence.*;
+
+@Entity
+@Table
+
+public class Category {
+    @Id
+    @SequenceGenerator(
+            name = "category_sequence",
+            sequenceName = "category_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "category_sequence"
+    )
+
+    private Long id;
+    private String name;
+
+    public Category() {
+    }
+
+    public Category(Long id,
+                    String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Category(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCategory_name() {
+        return name;
+    }
+
+    public void setCategory_name(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
