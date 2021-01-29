@@ -21,4 +21,9 @@ public class CategoryController {
         public List<Category> getCategories() {
         return categoryService.getCategories();
         }
+
+        @PostMapping(consumes = "application/json")
+        public void registerNewCategory(@RequestBody Category category) {
+        categoryService.addNewCategory(category);
+        }
     }
