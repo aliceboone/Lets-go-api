@@ -20,7 +20,7 @@ public class CategoryService {
 
     public void addNewCategory(Category category) {
         Optional<Category> categoryOptional = categoryRepository
-                .findCategoryByName(category.getName());
+                .findCategoryById(category.getName());
        if (categoryOptional.isPresent()) {
            throw  new IllegalStateException("name taken");
        }

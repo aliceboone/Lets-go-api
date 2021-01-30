@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "letsGo/product")
+@RequestMapping
 
 public class ProductController {
 
@@ -18,13 +18,12 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping
+    @GetMapping(path = "/product")
     public List<Product> getProducts() {
-
         return productService.getProducts();
     }
 
-    @PostMapping(consumes = "application/json")
+    @PostMapping(path="/user_account/{id}/product")
     public void registerNewProduct(@RequestBody Product product) {
         productService.addNewProduct(product);
     }

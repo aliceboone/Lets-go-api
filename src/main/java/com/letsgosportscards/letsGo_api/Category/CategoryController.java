@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "letsGo/category")
+@RequestMapping
 
 public class CategoryController {
 
@@ -16,7 +16,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping
+    @GetMapping(path = "category")
     public List<Category> getCategories() {
         return categoryService.getCategories();
     }
