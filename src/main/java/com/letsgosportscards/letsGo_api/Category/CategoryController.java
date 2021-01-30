@@ -5,8 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/category")
-
+@RequestMapping(path = "letsGo/category")
 
 public class CategoryController {
 
@@ -17,13 +16,14 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-        @GetMapping
-        public List<Category> getCategories() {
+    @GetMapping
+    public List<Category> getCategories() {
         return categoryService.getCategories();
-        }
-
-        @PostMapping(consumes = "application/json")
-        public void registerNewCategory(@RequestBody Category category) {
-        categoryService.addNewCategory(category);
-        }
     }
+
+    @PostMapping(consumes = "application/json")
+    public void registerNewCategory(@RequestBody Category category) {
+        categoryService.addNewCategory(category);
+    }
+}
+
