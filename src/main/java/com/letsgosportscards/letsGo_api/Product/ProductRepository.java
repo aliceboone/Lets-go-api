@@ -8,5 +8,5 @@ public interface ProductRepository
     extends JpaRepository<Product, Long> {
 
     @Query("SELECT s FROM Product s where s.name = ?1")
-    Optional<Product> findProductById(Long id);
+    Optional<Product> findProductByName(String name);
 }
