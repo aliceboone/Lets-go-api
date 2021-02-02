@@ -18,12 +18,29 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
+    public Category showCategory(Long categoryId) {
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Category with ID: " + categoryId + " does not exist"
+                ));
+        return category;
+    }
+
     public void addNewCategory(Category category) {
         Optional<Category> categoryOptional = categoryRepository
-                .findCategoryById(category.getName());
+                .findCategoryByName(category.getName());
        if (categoryOptional.isPresent()) {
            throw  new IllegalStateException("name taken");
        }
        categoryRepository.save(category);
+    }
+
+    public void deleteCategory(Long categoryId) {
+        boolean exists = categoryRepository.existsById(categoryId);
+        if(!exists) {
+            throw new IllegalStateException(
+                    "category with id" + categoryId + "does not exist");
+        }
+        categoryRepository.deleteById(categoryId);
     }
 }
