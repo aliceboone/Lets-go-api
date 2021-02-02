@@ -25,6 +25,7 @@ public class Product {
     private double price;
     private int releaseYear;
     private String imageUrl;
+    private int inventory;
     @ManyToOne
     private Category category;
 
@@ -38,6 +39,7 @@ public class Product {
                    double price,
                    int releaseYear,
                    String imageUrl,
+                   int inventory,
                    Category category) {
         this.id = id;
         this.name = name;
@@ -46,6 +48,7 @@ public class Product {
         this.price = price;
         this.releaseYear = releaseYear;
         this.imageUrl = imageUrl;
+        this.inventory = inventory;
         this.category = category;
     }
 
@@ -55,6 +58,7 @@ public class Product {
                    double price,
                    int releaseYear,
                    String imageUrl,
+                   int inventory,
                    Category category) {
         this.name = name;
         this.brand = brand;
@@ -62,6 +66,7 @@ public class Product {
         this.price = price;
         this.releaseYear = releaseYear;
         this.imageUrl = imageUrl;
+        this.inventory = inventory;
         this.category = category;
     }
 
@@ -117,6 +122,14 @@ public class Product {
         return imageUrl;
     }
 
+    public int getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(int inventory) {
+        this.inventory = inventory;
+    }
+
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
@@ -139,6 +152,7 @@ public class Product {
                 ", price=" + price +
                 ", releaseYear=" + releaseYear +
                 ", imageUrl='" + imageUrl + '\'' +
+                ", inventory='" + inventory + '\'' +
                 ", category=" + category +
                 '}';
     }
