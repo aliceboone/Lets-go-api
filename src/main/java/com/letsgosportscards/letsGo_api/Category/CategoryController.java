@@ -18,7 +18,7 @@ public class CategoryController {
 
         @GetMapping
         public List<Category> getCategories() {
-        return categoryService.getCategories();
+            return categoryService.getCategories();
         }
 
         @PostMapping(consumes = "application/json")
