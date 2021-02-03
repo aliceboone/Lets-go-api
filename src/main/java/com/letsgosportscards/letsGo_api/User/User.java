@@ -19,19 +19,12 @@ public class User {
     private String username;
     private String email;
     private boolean enabled;
-
     @ManyToMany
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+    private Role role;
 
-    public User(int i, String aliceB, String email, boolean enabled, Role role) {
+    public User() {
+
     }
-
     public User(Long id,
                 String username,
                 String email,
