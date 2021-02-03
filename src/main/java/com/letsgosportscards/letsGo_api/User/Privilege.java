@@ -26,13 +26,11 @@ public class Privilege {
                      String name,
                      Collection<Role> roles) {
         this.id = id;
-        this.name = name;
         this.roles = roles;
     }
 
     public Privilege(String name,
                      Collection<Role> roles) {
-        this.name = name;
         this.roles = roles;
     }
 
