@@ -18,7 +18,6 @@ public class User {
     private Long id;
     private String username;
     private String email;
-    private String password;
     private boolean enabled;
 
     @ManyToMany
@@ -30,31 +29,27 @@ public class User {
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
-    public User() {
+    public User(int i, String aliceB, String email, boolean enabled, Role role) {
     }
 
     public User(Long id,
                 String username,
                 String email,
-                String password,
                 boolean enabled,
                 Collection<Role> roles) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.password = password;
         this.enabled = enabled;
         this.roles = roles;
     }
 
     public User(String username,
                 String email,
-                String password,
                 boolean enabled,
                 Collection<Role> roles) {
         this.username = username;
         this.email = email;
-        this.password = password;
         this.enabled = enabled;
         this.roles = roles;
     }
@@ -83,14 +78,6 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public boolean isEnabled() {
         return enabled;
     }
@@ -113,7 +100,6 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", enabled=" + enabled +
                 ", roles=" + roles +
                 '}';
