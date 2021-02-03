@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "users")
+@Table
 public class User {
     @Id
     @SequenceGenerator(
@@ -18,32 +18,22 @@ public class User {
     private Long id;
     private String username;
     private String email;
-    @ManyToMany
-    private Role role;
+    private String password;
+    private String type;
 
     public User() {
-
     }
+
     public User(Long id,
                 String username,
                 String email,
-                boolean enabled,
-                Collection<Role> roles) {
+                String password,
+                String type) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.enabled = enabled;
-        this.roles = roles;
-    }
-
-    public User(String username,
-                String email,
-                boolean enabled,
-                Collection<Role> roles) {
-        this.username = username;
-        this.email = email;
-        this.enabled = enabled;
-        this.roles = roles;
+        this.password = password;
+        this.type = type;
     }
 
     public Long getId() {
@@ -70,31 +60,20 @@ public class User {
         this.email = email;
     }
 
-    public boolean isEnabled() {
-        return enabled;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public Collection<Role> getRoles() {
-        return roles;
+    public String getType() {
+        return type;
     }
 
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", enabled=" + enabled +
-                ", roles=" + roles +
-                '}';
+    public void setType(String type) {
+        this.type = type;
     }
 }
 
