@@ -13,13 +13,13 @@ public class Role {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy="role", cascade = CascadeType.ALL)
-    private List<UserRole> users;
+    @OneToMany(cascade= CascadeType.ALL)
+    private List<User> users;
 
-    public Role() {
+    public Role(long l, String admin) {
     }
 
-    public Role(Long id, String name, List<UserRole> users) {
+    public Role(String name) {
         this.id = id;
         this.name = name;
         this.users = users;
@@ -41,11 +41,11 @@ public class Role {
         this.name = name;
     }
 
-    public List<UserRole> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<UserRole> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 }

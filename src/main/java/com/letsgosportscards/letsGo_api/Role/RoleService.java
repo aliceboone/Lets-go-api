@@ -1,6 +1,5 @@
 package com.letsgosportscards.letsGo_api.Role;
 
-import com.letsgosportscards.letsGo_api.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -20,10 +19,10 @@ public class RoleService {
     }
 
     public void addNewRole(Role role) {
-        Optional<Role> userOptional = roleRepository
+        Optional<Role> roleOptional = roleRepository
                 .findByName(role.getName());
-        if (userOptional.isPresent()) {
-            throw  new IllegalStateException("email taken");
+        if (roleOptional.isPresent()) {
+            throw  new IllegalStateException("name taken");
         }
         roleRepository.save(role);
     }

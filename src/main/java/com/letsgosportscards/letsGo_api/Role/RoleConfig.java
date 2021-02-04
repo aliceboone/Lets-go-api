@@ -1,5 +1,28 @@
 package com.letsgosportscards.letsGo_api.Role;
 
-public class RoleConfig {
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
+public class RoleConfig {
+    @Bean
+    CommandLineRunner categoryCommandLineRunner(
+            RoleRepository repository) {
+        return args -> {
+           Role admin = new Role(
+                    1L,
+                    "Admin"
+            );
+            Role vendor = new Role(
+                    "Vendor"
+            );
+            Role customer = new Role(
+                    "Customer"
+            );
+            repository.saveAll(
+                    List.of(admin,vendor, customer)
+            );
+        };
+    }
 }

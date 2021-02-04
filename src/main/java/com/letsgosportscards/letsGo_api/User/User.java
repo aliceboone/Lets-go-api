@@ -1,10 +1,7 @@
 package com.letsgosportscards.letsGo_api.User;
 
 import com.letsgosportscards.letsGo_api.Role.Role;
-import com.letsgosportscards.letsGo_api.Role.UserRole;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table
@@ -22,13 +19,13 @@ public class User {
     private String username;
     private String email;
 
-    @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
-    private List<UserRole> role;
+    @ManyToOne
+    private Role role;
 
     public User() {
     }
 
-    public User(Long id, String username, String email, List<UserRole> role) {
+    public User(Long id, String username, String email, Role role) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -59,11 +56,11 @@ public class User {
         this.email = email;
     }
 
-    public List<UserRole> getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(List<UserRole> role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }
