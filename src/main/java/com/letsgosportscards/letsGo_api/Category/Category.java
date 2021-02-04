@@ -16,7 +16,6 @@ public class Category {
             strategy = GenerationType.SEQUENCE,
             generator = "category_sequence"
     )
-
     private Long id;
     private String name;
 

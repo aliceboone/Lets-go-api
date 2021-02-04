@@ -1,7 +1,10 @@
 package com.letsgosportscards.letsGo_api.User;
 
+import com.letsgosportscards.letsGo_api.Role.Role;
+import com.letsgosportscards.letsGo_api.Role.UserRole;
+
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table
@@ -18,22 +21,18 @@ public class User {
     private Long id;
     private String username;
     private String email;
-    private String password;
-    private String type;
+
+    @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+    private List<UserRole> role;
 
     public User() {
     }
 
-    public User(Long id,
-                String username,
-                String email,
-                String password,
-                String type) {
+    public User(Long id, String username, String email, List<UserRole> role) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.password = password;
-        this.type = type;
+        this.role = role;
     }
 
     public Long getId() {
@@ -60,20 +59,13 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public List<UserRole> getRole() {
+        return role;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    public void setRole(List<UserRole> role) {
+        this.role = role;
     }
 }
+
 
