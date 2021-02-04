@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/category")
+@RequestMapping(path = "/api/category")
 
 public class CategoryController {
 
@@ -15,20 +15,29 @@ public class CategoryController {
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
-
-        @GetMapping
-        public List<Category> getCategories() {
-            return categoryService.getCategories();
-        }
-
-        @PostMapping(consumes = "application/json")
-        public void registerNewCategory(@RequestBody Category category) {
+//    Index
+    @GetMapping
+    public List<Category> getCategories() {
+        return categoryService.getCategories();
+    }
+    //Show
+    @GetMapping(path = "{categoryId}")
+    public Category showCategory(@PathVariable("categoryId") Long categoryId) {
+        return categoryService.showCategory(categoryId);
+    }
+//    Create
+    @PostMapping(consumes = "application/json")
+    public void registerNewCategory(@RequestBody Category category) {
         categoryService.addNewCategory(category);
+<<<<<<< HEAD
         }
 
+=======
+    }
+   //Delete
+>>>>>>> 2a2b8c5ee5fea3c459055961e8dcc53c0f5aa642
     @DeleteMapping(path = "{categoryId}")
     public void deleteCategory(@PathVariable("categoryId") Long categoryId) {
         categoryService.deleteCategory(categoryId);
     }
 }
-
