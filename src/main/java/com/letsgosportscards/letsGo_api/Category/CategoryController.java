@@ -29,13 +29,8 @@ public class CategoryController {
     @PostMapping(consumes = "application/json")
     public void registerNewCategory(@RequestBody Category category) {
         categoryService.addNewCategory(category);
-<<<<<<< HEAD
-        }
-
-=======
     }
    //Delete
->>>>>>> 2a2b8c5ee5fea3c459055961e8dcc53c0f5aa642
     @DeleteMapping(path = "{categoryId}")
     public void deleteCategory(@PathVariable("categoryId") Long categoryId) {
         categoryService.deleteCategory(categoryId);
