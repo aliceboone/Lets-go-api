@@ -26,3 +26,10 @@ public class CategoryController {
         categoryService.addNewCategory(category);
         }
     }
+
+    @DeleteMapping(path = "{categoryId}")
+    public void deleteCategory(@PathVariable("categoryId") Long categoryId) {
+        categoryService.deleteCategory(categoryId);
+    }
+}
+
