@@ -1,6 +1,5 @@
 package com.letsgosportscards.letsGo_api.Product;
 
-import com.letsgosportscards.letsGo_api.Category.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
