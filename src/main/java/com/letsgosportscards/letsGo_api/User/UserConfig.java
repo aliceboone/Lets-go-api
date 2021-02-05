@@ -3,8 +3,7 @@ package com.letsgosportscards.letsGo_api.User;
 import com.letsgosportscards.letsGo_api.Role.Role;
 import com.letsgosportscards.letsGo_api.Role.RoleRepository;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 import java.util.List;
 
 @Configuration
@@ -16,7 +15,7 @@ public class UserConfig {
             Role role = roleRepository.findByName("admin").get();
             User adminUser = new User(
                     1L,
-                    "AgHann",
+                    "AgCraw",
                     "admin@letsgo.com",
                      role
             );

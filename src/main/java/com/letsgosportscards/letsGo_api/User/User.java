@@ -12,8 +12,7 @@ public class User {
             sequenceName = "user_sequence",
             allocationSize = 1 )
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-                    generator = "user-sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
     private Long id;
     private String username;
@@ -27,6 +26,14 @@ public class User {
 
     public User(Long id, String username, String email, Role role) {
         this.id = id;
+        this.username = username;
+        this.email = email;
+        this.role = role;
+    }
+
+    public User(String username,
+                String email,
+                Role role) {
         this.username = username;
         this.email = email;
         this.role = role;
