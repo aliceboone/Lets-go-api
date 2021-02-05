@@ -2,10 +2,8 @@ package com.letsgosportscards.letsGo_api.Product;
 
 import javax.persistence.*;
 import com.letsgosportscards.letsGo_api.Category.Category;
-
 @Table
 @Entity
-
 public class Product {
     @Id
     @SequenceGenerator(
@@ -14,9 +12,7 @@ public class Product {
             allocationSize = 1
     )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "product_sequence"
-    )
+            strategy = GenerationType.SEQUENCE)
 
     private Long id;
     private String name;
@@ -42,6 +38,18 @@ public class Product {
                    int inventory,
                    Category category) {
         this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.description = description;
+        this.price = price;
+        this.releaseYear = releaseYear;
+        this.imageUrl = imageUrl;
+        this.inventory = inventory;
+        this.category = category;
+    }
+
+    public Product(String name, String brand, String description, double price, int releaseYear,
+                   String imageUrl, int inventory, Category category) {
         this.name = name;
         this.brand = brand;
         this.description = description;
@@ -104,16 +112,16 @@ public class Product {
         return imageUrl;
     }
 
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public int getInventory() {
         return inventory;
     }
 
     public void setInventory(int inventory) {
         this.inventory = inventory;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     public Category getCategory() {

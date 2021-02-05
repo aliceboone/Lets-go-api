@@ -20,7 +20,7 @@
 //                    "Panini Card",
 //                    30.00,
 //                    2019,
-//                    "https://www.google.com/card1",
+//                    "https://ibb.co/dWDzrqX",
 //                    1,
 //                    category
 //            );
@@ -31,7 +31,7 @@
 //                    "LetsGo",
 //                    30.00,
 //                    1981,
-//                    "https://www.google.com/card2",
+//                    "https://ibb.co/t8BCM2T",
 //                    2,
 //                    category
 //            );

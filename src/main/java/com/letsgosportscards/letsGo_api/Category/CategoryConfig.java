@@ -16,10 +16,11 @@
 //                    "Baseball"
 //            );
 //            Category basketball = new Category(
-//                    "Basketball"
+//                   "Basketball"
+//
 //            );
 //            Category football = new Category(
-//                    "Football"
+//                  "Football"
 //            );
 //            repository.saveAll(
 //                    List.of(baseball, basketball, football)

@@ -19,21 +19,19 @@ public class Category {
     )
     private Long id;
     private String name;
-    @OneToMany(cascade= CascadeType.ALL)
+    @OneToMany(mappedBy = "category")
     private List<Product> products;
 
     public Category() {
     }
 
-    public Category(Long id, String name, List<Product> products) {
+    public Category(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.products = products;
     }
 
-    public Category(String name, List<Product> products) {
+    public Category(String name) {
         this.name = name;
-        this.products = products;
     }
 
     public Long getId() {
