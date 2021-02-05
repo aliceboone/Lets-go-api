@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/role")
+@RequestMapping(path = "api/role")
 public class RoleController {
     private final RoleService roleService;
 

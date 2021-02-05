@@ -1,7 +1,6 @@
 package com.letsgosportscards.letsGo_api.Role;
 
 import com.letsgosportscards.letsGo_api.User.User;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,20 +8,28 @@ import java.util.List;
 @Table
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name = "role_sequence",
+            sequenceName = "role_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
 
-    @OneToMany(cascade= CascadeType.ALL)
+    @OneToMany(mappedBy = "role")
     private List<User> users;
 
-    public Role(long l, String admin) {
+    public Role() {
+    }
+
+    public Role(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Role(String name) {
-        this.id = id;
         this.name = name;
-        this.users = users;
     }
 
     public Long getId() {
@@ -45,7 +52,6 @@ public class Role {
         return users;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+
+
 }
