@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/users")
+@RequestMapping(path = "api/users")
 
 public class UserController {
 
@@ -21,8 +21,8 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @PostMapping(consumes = "application/json")
-    public void registerNewUser(@RequestBody User user) {
-        userService.addNewUser(user);
+    @PostMapping(path = "/role/{roleId}",  consumes = "application/json")
+    public void registerNewUser(@PathVariable("roleId") Long roleId,  @RequestBody User user) {
+        userService.addNewUser(user, roleId);
     }
 }
