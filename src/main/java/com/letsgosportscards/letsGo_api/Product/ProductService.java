@@ -7,6 +7,7 @@ import com.letsgosportscards.letsGo_api.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +47,14 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    @Transactional
+    public void updateProduct(Long productId, Product product) {
+        Product checkProduct = productRepository.findById(productId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "product with id " + productId + " does not exists"
+                ));
+    }
+
     public void deleteProduct(Long productId) {
         boolean exists = productRepository.existsById(productId);
         if(!exists) {
@@ -54,4 +63,5 @@ public class ProductService {
         }
         productRepository.deleteById(productId);
     }
+
 }
