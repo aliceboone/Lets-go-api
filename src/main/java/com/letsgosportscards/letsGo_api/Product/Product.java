@@ -1,11 +1,18 @@
 package com.letsgosportscards.letsGo_api.Product;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.letsgosportscards.letsGo_api.Category.Category;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Table
 @Entity
-
+@Getter
+@Setter
+@ToString
 public class Product {
     @Id
     @SequenceGenerator(
@@ -14,9 +21,7 @@ public class Product {
             allocationSize = 1
     )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "product_sequence"
-    )
+            strategy = GenerationType.AUTO)
 
     private Long id;
     private String name;
@@ -26,7 +31,10 @@ public class Product {
     private int releaseYear;
     private String imageUrl;
     private int inventory;
-    @ManyToOne
+
+    @JsonIgnore // prevents from serializing user
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="category_id", nullable = false)
     private Category category;
 
     public Product() {
@@ -52,90 +60,17 @@ public class Product {
         this.category = category;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Product(String name, String brand,
+                   String description,
+                   double price, int releaseYear,
+                   String imageUrl, int inventory, Category category) {
         this.name = name;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
         this.brand = brand;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
         this.price = price;
-    }
-
-    public int getReleaseYear() {
-        return releaseYear;
-    }
-
-    public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public int getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(int inventory) {
-        this.inventory = inventory;
-    }
-
-    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
+        this.inventory = inventory;
         this.category = category;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", brand='" + brand + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", releaseYear=" + releaseYear +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", inventory='" + inventory + '\'' +
-                ", category=" + category +
-                '}';
     }
 }

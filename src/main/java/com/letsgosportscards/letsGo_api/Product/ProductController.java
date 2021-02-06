@@ -27,9 +27,9 @@ public class ProductController {
         return productService.showProduct(productId);
     }
 
-    @PostMapping(consumes = "application/json")
-    public void registerNewProduct(@RequestBody Product product) {
-        productService.addNewProduct(product);
+    @PostMapping(path = "/category/{categoryId}",  consumes = "application/json")
+    public void registerNewProduct(@PathVariable("categoryId") Long categoryId,  @RequestBody Product product) {
+        productService.addNewProduct(product, categoryId);
     }
 
     @DeleteMapping(path = "{productId}")

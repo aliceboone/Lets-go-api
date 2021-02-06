@@ -1,9 +1,18 @@
 package com.letsgosportscards.letsGo_api.Category;
 
 import javax.persistence.*;
+
 import com.letsgosportscards.letsGo_api.Product.Product;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@ToString
 @Entity
 @Table
 public class Category {
@@ -14,58 +23,22 @@ public class Category {
             allocationSize = 1
     )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "category_sequence"
-    )
+            strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @OneToMany(cascade= CascadeType.ALL)
-    private List<Product> products;
+
+    @OneToMany(mappedBy = "category")
+    List<Product> products = new ArrayList<>();
 
     public Category() {
     }
 
-    public Category(Long id, String name, List<Product> products) {
+    public Category(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.products = products;
     }
 
-    public Category(String name, List<Product> products) {
+    public Category(String name) {
         this.name = name;
-        this.products = products;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", products=" + products +
-                '}';
     }
 }
