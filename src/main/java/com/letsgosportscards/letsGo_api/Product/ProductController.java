@@ -1,7 +1,8 @@
 package com.letsgosportscards.letsGo_api.Product;
 
 import com.letsgosportscards.letsGo_api.Category.CategoryRepository;
-import com.letsgosportscards.letsGo_api.User.UserRepository;
+//import com.letsgosportscards.letsGo_api.User.UserRepository;
+import com.letsgosportscards.letsGo_api.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,16 +14,16 @@ public class ProductController {
 
     private final ProductService productService;
     private final CategoryRepository categoryRepository;
-    private final UserRepository userRepository;
+//    private final UserRepository userRepository;
 
     @Autowired
-    public ProductController(ProductService productService, CategoryRepository categoryRepository, UserRepository userRepository) {
+    public ProductController(ProductService productService, CategoryRepository categoryRepository) {
         this.productService = productService;
         this.categoryRepository = categoryRepository;
-        this.userRepository = userRepository;
+//        this.userRepository = userRepository;
     }
 
-    //    Index
+    // Index
     @GetMapping
     public List<Product> getProducts() {
         return productService.getProducts();
@@ -32,9 +33,10 @@ public class ProductController {
     public Product showProduct(@PathVariable("productId") Long productId) {
         return productService.showProduct(productId);
     }
+
     //Create
-    @PostMapping(path = "/category/{categoryId}",  consumes = "application/json")
-    public void registerNewProduct(@PathVariable("categoryId") Long categoryId,  @RequestBody Product product) {
+    @PostMapping(path = "/category/{categoryId}}",  consumes = "application/json")
+    public void addNewProduct(@PathVariable("categoryId") Long categoryId, @RequestBody Product product) {
         productService.addNewProduct(product, categoryId);
     }
 
@@ -50,4 +52,6 @@ public class ProductController {
     public void deleteProduct(@PathVariable("productId") Long productId) {
         productService.deleteProduct(productId);
     }
+
 }
+

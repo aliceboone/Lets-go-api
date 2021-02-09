@@ -28,7 +28,7 @@ public class User {
     private String email;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
+    @OneToMany
     List<Product> products = new ArrayList<>();
 
     public User() {

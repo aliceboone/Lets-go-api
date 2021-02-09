@@ -42,7 +42,7 @@ public class ProductService {
         Optional<Product> productOptional = productRepository
                 .findById(product.getId());
         if (productOptional.isPresent()) {
-            throw  new IllegalStateException("name taken");
+            throw  new IllegalStateException("Not able to add product");
         }
         product.setCategory(category);
         productRepository.save(product);
@@ -54,6 +54,19 @@ public class ProductService {
                 .orElseThrow(() -> new IllegalStateException(
                         "product with id " + productId + " does not exists"
                 ));
+        checkProduct.setPlayerName( product.getPlayerName());
+        checkProduct.setBrand( product.getBrand());
+        checkProduct.setCard_number( product.getCard_number());
+        checkProduct.setCurrent_value( product.getCurrent_value());
+        checkProduct.setSetName( product.getSetName());
+        checkProduct.setDescription( product.getDescription());
+        checkProduct.setImageUrl( product.getImageUrl());
+        checkProduct.setPrice_paid( product.getPrice_paid());
+        checkProduct.setPrice_sold( product.getPrice_sold());
+        checkProduct.setInventory( product.getInventory());
+        checkProduct.setReleaseYear( product.getReleaseYear());
+        checkProduct.setCategory( product.getCategory());
+        productRepository.save(checkProduct);
     }
 
     public void deleteProduct(Long productId) {

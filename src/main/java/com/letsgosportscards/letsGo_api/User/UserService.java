@@ -1,6 +1,5 @@
 package com.letsgosportscards.letsGo_api.User;
 
-import com.letsgosportscards.letsGo_api.Category.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -22,11 +21,27 @@ public class UserService {
 
     public void addNewUser(User user) {
         Optional<User> userOptional = userRepository
-                .findByEmail(user.getEmail());
+                .findByUsername(user.getUsername());
         if (userOptional.isPresent()) {
-            throw new IllegalStateException("email taken");
+            throw new IllegalStateException("Username taken");
         }
         userRepository.save(user);
+    }
+
+    public User showUser(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "User with ID: " + userId + " does not exist"
+                ));
+        return user;
+    }
+
+    public User showByUserName(String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalStateException(
+                        "User with userName: " + username + " does not exist"
+                ));
+        return user;
     }
 }
 

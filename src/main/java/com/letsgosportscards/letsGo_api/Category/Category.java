@@ -1,12 +1,8 @@
 package com.letsgosportscards.letsGo_api.Category;
 
 import javax.persistence.*;
-
 import com.letsgosportscards.letsGo_api.Product.Product;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +23,8 @@ public class Category {
     private Long id;
     private String name;
 
-//    @OneToMany(mappedBy = "category")
-//    List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "category")
+    List<Product> products = new ArrayList<>();
 
     public Category() {
     }
