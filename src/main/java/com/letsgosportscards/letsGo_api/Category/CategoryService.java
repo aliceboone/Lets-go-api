@@ -26,7 +26,7 @@ public class CategoryService {
         return category;
     }
 
-    public void addNewCategory(Category category) {
+    public void addCategory(Category category) {
         Optional<Category> categoryOptional = categoryRepository
                 .findCategoryByName(category.getName());
        if (categoryOptional.isPresent()) {
@@ -42,5 +42,14 @@ public class CategoryService {
                     "category with id" + categoryId + "does not exist");
         }
         categoryRepository.deleteById(categoryId);
+    }
+
+    public void updateCategory(Long categoryId, Category category) {
+     Category checkCategory = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "category with id " + categoryId + " does not exists"
+                ));
+        checkCategory.setName(category.getName());
+        categoryRepository.save( checkCategory);
     }
 }

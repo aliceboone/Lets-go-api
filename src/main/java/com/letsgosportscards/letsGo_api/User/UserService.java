@@ -1,7 +1,5 @@
 package com.letsgosportscards.letsGo_api.User;
 
-import com.letsgosportscards.letsGo_api.Role.Role;
-import com.letsgosportscards.letsGo_api.Role.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -9,30 +7,52 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
     }
+
+//    public void deleteUser(Long userId, User user) {
+//        boolean exists = userRepository.existsById(userId);
+//        if(!exists) {
+//            throw new IllegalStateException(
+//                    "user with id" + userId + "does not exist");
+//        }
+//        userRepository.deleteUser(userId);
+//    }
 
     public List<User> getUsers() {
         return userRepository.findAll();
     }
 
-    public void addNewUser(User user, Long roleId) {
-        Role role = roleRepository
-                .findById(roleId)
-                .orElseThrow(() -> new IllegalStateException("Role does not exists"));
+    public User showUser(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "User with ID: " + userId + " does not exist"
+                ));
+        return user;
+    }
+
+    public void addNewUser(User user) {
         Optional<User> userOptional = userRepository
                 .findByEmail(user.getEmail());
         if (userOptional.isPresent()) {
-            throw  new IllegalStateException("email taken");
+            throw new IllegalStateException("Email already exist");
         }
-        user.setRole(role);
         userRepository.save(user);
     }
+//
+//    public void updateUser(Long userId, User user) {
+//        User checkUser = userRepository.findById(userId)
+//                .orElseThrow(() -> new IllegalStateException(
+//                        "category with id " + userId + " does not exists"
+//                ));
+//        checkUser.setEmail(user.getEmail());
+//        userRepository.save( checkUser);
+//    }
+
 }
+
+

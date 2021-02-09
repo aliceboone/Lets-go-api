@@ -15,21 +15,32 @@ public class CategoryController {
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
-//    Index
+
+    //Index
     @GetMapping
     public List<Category> getCategories() {
         return categoryService.getCategories();
     }
-    //Show
+
+    //Show by Id
     @GetMapping(path = "{categoryId}")
     public Category showCategory(@PathVariable("categoryId") Long categoryId) {
         return categoryService.showCategory(categoryId);
     }
-//    Create
+
+    // Create
     @PostMapping(consumes = "application/json")
-    public void registerNewCategory(@RequestBody Category category) {
-        categoryService.addNewCategory(category);
+    public void addCategory(@RequestBody Category category) {
+        categoryService.addCategory(category);
     }
+
+    // Update
+    @PutMapping(path = "/{categoryId}")
+    public void updateCategory(@PathVariable("categoryId") Long categoryId,
+                              @RequestBody Category category) {
+       categoryService.updateCategory(categoryId, category);
+    }
+
    //Delete
     @DeleteMapping(path = "{categoryId}")
     public void deleteCategory(@PathVariable("categoryId") Long categoryId) {

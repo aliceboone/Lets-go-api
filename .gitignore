@@ -1,6 +1,5 @@
 /.idea
 /target
 .DS_Store
-/letsGo-api.iml
-mvn
-application.properties
+src/main/resources/application.properties
+
