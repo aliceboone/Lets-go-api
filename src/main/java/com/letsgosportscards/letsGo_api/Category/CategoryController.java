@@ -1,6 +1,5 @@
 package com.letsgosportscards.letsGo_api.Category;
 
-import com.letsgosportscards.letsGo_api.Product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -23,7 +22,7 @@ public class CategoryController {
         return categoryService.getCategories();
     }
 
-    //Show
+    //Show by Id
     @GetMapping(path = "{categoryId}")
     public Category showCategory(@PathVariable("categoryId") Long categoryId) {
         return categoryService.showCategory(categoryId);

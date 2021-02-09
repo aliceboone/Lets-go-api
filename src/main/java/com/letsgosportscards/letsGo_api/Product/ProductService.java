@@ -1,11 +1,9 @@
 package com.letsgosportscards.letsGo_api.Product;
 
-import com.letsgosportscards.letsGo_api.Category.Category;
-import com.letsgosportscards.letsGo_api.Category.CategoryRepository;
+import com.letsgosportscards.letsGo_api.User.User;
 import com.letsgosportscards.letsGo_api.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -13,13 +11,11 @@ import java.util.Optional;
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
-    private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
 
     @Autowired
-    public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository, UserRepository userRepository) {
+    public ProductService(ProductRepository productRepository, UserRepository userRepository) {
         this.productRepository = productRepository;
-        this.categoryRepository = categoryRepository;
         this.userRepository = userRepository;
     }
 
@@ -35,16 +31,16 @@ public class ProductService {
         return product;
     }
 
-    public void addNewProduct(Product product, Long categoryId) {
-        Category category = categoryRepository
-                .findById(categoryId)
-                .orElseThrow(() -> new IllegalStateException("Category does not exists"));
+    public void addNewProduct(Product product, Long userId) {
+        User user = userRepository
+                .findById(userId)
+                .orElseThrow(() -> new IllegalStateException("User does not exists"));
         Optional<Product> productOptional = productRepository
                 .findById(product.getId());
         if (productOptional.isPresent()) {
             throw  new IllegalStateException("Not able to add product");
         }
-        product.setCategory(category);
+        product.setUser(user);
         productRepository.save(product);
     }
 

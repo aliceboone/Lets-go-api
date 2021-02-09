@@ -1,8 +1,6 @@
 package com.letsgosportscards.letsGo_api.Product;
 
-import com.letsgosportscards.letsGo_api.Category.CategoryRepository;
-//import com.letsgosportscards.letsGo_api.User.UserRepository;
-import com.letsgosportscards.letsGo_api.User.User;
+import com.letsgosportscards.letsGo_api.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,14 +11,12 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
-    private final CategoryRepository categoryRepository;
-//    private final UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public ProductController(ProductService productService, CategoryRepository categoryRepository) {
+    public ProductController(ProductService productService, UserRepository userRepository) {
         this.productService = productService;
-        this.categoryRepository = categoryRepository;
-//        this.userRepository = userRepository;
+        this.userRepository = userRepository;
     }
 
     // Index
@@ -35,9 +31,9 @@ public class ProductController {
     }
 
     //Create
-    @PostMapping(path = "/category/{categoryId}}",  consumes = "application/json")
-    public void addNewProduct(@PathVariable("categoryId") Long categoryId, @RequestBody Product product) {
-        productService.addNewProduct(product, categoryId);
+    @PostMapping(path = "/user/{userId}}",  consumes = "application/json")
+    public void addNewProduct(@PathVariable("userId") Long userId, @RequestBody Product product) {
+        productService.addNewProduct(product, userId);
     }
 
     // Update

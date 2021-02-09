@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/users")
+@RequestMapping(path = "api/user")
 
 public class UserController {
 
@@ -23,17 +23,10 @@ public class UserController {
         return userService.getUsers();
     }
 
-    // Show by ID
+    // Show by Id
     @GetMapping(path = "{userId}")
     public User showUser(@PathVariable("userId") Long userId) {
         return userService.showUser(userId);
-    }
-
-    // Show by userName
-    @GetMapping(path = "/userName")
-    public User showUserByUserName(
-            @RequestParam(required = true) String userName) {
-        return userService.showByUserName(userName);
     }
 
     // Create
@@ -42,4 +35,17 @@ public class UserController {
        userService.addNewUser(user);
     }
 
+    // Update
+    @PutMapping(path = "/{userId}")
+    public void updateUser(@PathVariable("userId") Long userId,
+                               @RequestBody User user) {
+       UserService.updateUser(userId, user);
+    }
+
+    //Delete
+    @DeleteMapping(path = "{categoryId}")
+    public void deleteUser(@PathVariable("userId") Long userId,
+                           @RequestBody User user) {
+        UserService. deleteUser(userId, user);
+    }
 }

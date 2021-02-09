@@ -1,10 +1,7 @@
 package com.letsgosportscards.letsGo_api.User;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.letsgosportscards.letsGo_api.Product.Product;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +19,11 @@ public class User {
             allocationSize = 1 )
 
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private Long id;
     private String username;
     private String email;
 
-    @JsonIgnore
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     List<Product> products = new ArrayList<>();
 
     public User() {

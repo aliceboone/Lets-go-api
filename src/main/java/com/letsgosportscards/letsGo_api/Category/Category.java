@@ -18,8 +18,7 @@ public class Category {
             sequenceName = "category_sequence",
             allocationSize = 1
     )
-    @GeneratedValue(
-            strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
 
