@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/category")
+@RequestMapping(path = "/category")
 
 public class CategoryController {
 

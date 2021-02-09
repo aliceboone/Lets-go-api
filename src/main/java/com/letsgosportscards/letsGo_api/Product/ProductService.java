@@ -1,6 +1,6 @@
 package com.letsgosportscards.letsGo_api.Product;
 
-import com.letsgosportscards.letsGo_api.User.User;
+import com.letsgosportscards.letsGo_api.model.User;
 import com.letsgosportscards.letsGo_api.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,7 +61,7 @@ public class ProductService {
         checkProduct.setPrice_sold( product.getPrice_sold());
         checkProduct.setInventory( product.getInventory());
         checkProduct.setReleaseYear( product.getReleaseYear());
-        checkProduct.setCategory( product.getCategory());
+//        checkProduct.setCategory( product.getCategory());
         productRepository.save(checkProduct);
     }
 
@@ -73,5 +73,7 @@ public class ProductService {
         }
         productRepository.deleteById(productId);
     }
+
+
 
 }

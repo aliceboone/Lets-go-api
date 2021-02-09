@@ -1,5 +1,6 @@
 package com.letsgosportscards.letsGo_api.Category;
 
+import com.letsgosportscards.letsGo_api.Category.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

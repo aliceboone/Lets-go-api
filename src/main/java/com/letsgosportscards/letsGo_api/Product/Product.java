@@ -3,7 +3,7 @@ package com.letsgosportscards.letsGo_api.Product;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.letsgosportscards.letsGo_api.Category.Category;
-import com.letsgosportscards.letsGo_api.User.User;
+import com.letsgosportscards.letsGo_api.model.User;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -43,8 +43,8 @@ public class Product {
     private Category category;
 
     @JsonIgnore // prevents from serializing user
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="user_id", nullable = false)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable=false)
     private User User;
 
     public Product() {
@@ -73,6 +73,6 @@ public class Product {
         this.price_paid = price_paid;
         this.price_sold = price_sold;
         this.current_value = current_value;
-        this.category = category;
+//        this.category = category;
     }
 }
