@@ -2,8 +2,7 @@ package com.letsgosportscards.letsGo_api.Product;
 
 import com.letsgosportscards.letsGo_api.Category.Category;
 import com.letsgosportscards.letsGo_api.Category.CategoryRepository;
-import com.letsgosportscards.letsGo_api.Role.Role;
-import com.letsgosportscards.letsGo_api.User.User;
+import com.letsgosportscards.letsGo_api.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +14,13 @@ import java.util.Optional;
 public class ProductService {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository) {
+    public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository, UserRepository userRepository) {
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
+        this.userRepository = userRepository;
     }
 
     public List<Product> getProducts() {
@@ -39,7 +40,7 @@ public class ProductService {
                 .findById(categoryId)
                 .orElseThrow(() -> new IllegalStateException("Category does not exists"));
         Optional<Product> productOptional = productRepository
-                .findProductByName(product.getName());
+                .findById(product.getId());
         if (productOptional.isPresent()) {
             throw  new IllegalStateException("name taken");
         }

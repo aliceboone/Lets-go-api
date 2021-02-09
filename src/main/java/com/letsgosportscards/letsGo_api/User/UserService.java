@@ -1,7 +1,6 @@
 package com.letsgosportscards.letsGo_api.User;
 
-import com.letsgosportscards.letsGo_api.Role.Role;
-import com.letsgosportscards.letsGo_api.Role.RoleRepository;
+import com.letsgosportscards.letsGo_api.Category.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -11,28 +10,24 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
     }
 
     public List<User> getUsers() {
         return userRepository.findAll();
     }
 
-    public void addNewUser(User user, Long roleId) {
-        Role role = roleRepository
-                .findById(roleId)
-                .orElseThrow(() -> new IllegalStateException("Role does not exists"));
+    public void addNewUser(User user) {
         Optional<User> userOptional = userRepository
                 .findByEmail(user.getEmail());
         if (userOptional.isPresent()) {
-            throw  new IllegalStateException("email taken");
+            throw new IllegalStateException("email taken");
         }
-        user.setRole(role);
         userRepository.save(user);
     }
 }
+
+

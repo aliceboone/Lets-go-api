@@ -1,5 +1,7 @@
 package com.letsgosportscards.letsGo_api.Product;
 
+import com.letsgosportscards.letsGo_api.Category.CategoryRepository;
+import com.letsgosportscards.letsGo_api.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +12,14 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
+    private final CategoryRepository categoryRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, CategoryRepository categoryRepository, UserRepository userRepository) {
         this.productService = productService;
+        this.categoryRepository = categoryRepository;
+        this.userRepository = userRepository;
     }
 
     //    Index
