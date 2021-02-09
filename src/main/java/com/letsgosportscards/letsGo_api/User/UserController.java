@@ -35,17 +35,17 @@ public class UserController {
        userService.addNewUser(user);
     }
 
-    // Update
-    @PutMapping(path = "/{userId}")
-    public void updateUser(@PathVariable("userId") Long userId,
-                               @RequestBody User user) {
-       UserService.updateUser(userId, user);
-    }
-
-    //Delete
-    @DeleteMapping(path = "{categoryId}")
-    public void deleteUser(@PathVariable("userId") Long userId,
-                           @RequestBody User user) {
-        UserService. deleteUser(userId, user);
-    }
+//    // Update
+//    @PutMapping(path = "/{userId}")
+//    public void updateUser(@PathVariable("userId") Long userId,
+//                               @RequestBody User user) {
+//       UserService.updateUser(userId, user);
+//    }
+//
+//    //Delete
+//    @DeleteMapping(path = "{categoryId}")
+//    public void deleteUser(@PathVariable("userId") Long userId,
+//                           @RequestBody User user) {
+//        UserService. deleteUser(userId, user);
+//    }
 }

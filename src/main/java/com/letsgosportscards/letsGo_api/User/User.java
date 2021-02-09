@@ -1,5 +1,6 @@
 package com.letsgosportscards.letsGo_api.User;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.letsgosportscards.letsGo_api.Product.Product;
 import lombok.*;
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class User {
     private String username;
     private String email;
 
+    @JsonIgnore // prevents from serializing user
     @OneToMany(mappedBy = "user")
     List<Product> products = new ArrayList<>();
 

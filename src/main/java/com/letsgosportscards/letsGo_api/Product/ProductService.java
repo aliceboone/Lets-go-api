@@ -1,5 +1,7 @@
 package com.letsgosportscards.letsGo_api.Product;
 
+import com.letsgosportscards.letsGo_api.Category.Category;
+import com.letsgosportscards.letsGo_api.Category.CategoryRepository;
 import com.letsgosportscards.letsGo_api.User.User;
 import com.letsgosportscards.letsGo_api.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +14,13 @@ import java.util.Optional;
 public class ProductService {
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
-    public ProductService(ProductRepository productRepository, UserRepository userRepository) {
+    public ProductService(ProductRepository productRepository, UserRepository userRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.userRepository = userRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     public List<Product> getProducts() {
@@ -31,7 +35,10 @@ public class ProductService {
         return product;
     }
 
-    public void addNewProduct(Product product, Long userId) {
+    public void addNewProduct(Product product, Long categoryId, Long userId) {
+        Category category = categoryRepository
+                .findById(categoryId)
+                .orElseThrow(() -> new IllegalStateException("Category does not exists"));
         User user = userRepository
                 .findById(userId)
                 .orElseThrow(() -> new IllegalStateException("User does not exists"));
@@ -40,6 +47,7 @@ public class ProductService {
         if (productOptional.isPresent()) {
             throw  new IllegalStateException("Not able to add product");
         }
+        product.setCategory(category);
         product.setUser(user);
         productRepository.save(product);
     }

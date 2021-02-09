@@ -37,15 +37,13 @@ public class Product {
     private double price_sold;
     private double current_value;
 
-    @JsonIgnore // prevents from serializing user
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="category_id", nullable = false)
+    @ManyToOne
+//    @JoinColumn(name="category_id", nullable = false)
     private Category category;
 
-    @JsonIgnore // prevents from serializing user
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="user_id", nullable = false)
-    private User User;
+    @ManyToOne
+//    @JoinColumn(name="user_id", nullable = false)
+    private User user;
 
     public Product() {
     }
