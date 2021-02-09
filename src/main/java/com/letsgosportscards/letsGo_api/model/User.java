@@ -49,7 +49,7 @@ public class User {
     private String password;
     //
     @NotNull
-    @Column(name = "auth_provider")
+    @Column
     @Enumerated(EnumType.STRING)
     private AuthProvider provider = AuthProvider.local; // todo need to remove equal later
 
