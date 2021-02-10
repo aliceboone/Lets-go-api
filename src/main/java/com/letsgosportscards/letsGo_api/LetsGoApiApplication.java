@@ -1,14 +1,12 @@
 package com.letsgosportscards.letsGo_api;
 
-import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
+import com.letsgosportscards.letsGo_api.config.AppProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @SpringBootApplication
-//@Configuration
-//@EnableEncryptableProperties
-
+@EnableConfigurationProperties(AppProperties.class)
 public class LetsGoApiApplication {
 
 	public static void main(String[] args) {

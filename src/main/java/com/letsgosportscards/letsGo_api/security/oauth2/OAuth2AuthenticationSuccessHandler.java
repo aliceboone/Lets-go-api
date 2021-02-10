@@ -1,6 +1,5 @@
 package com.letsgosportscards.letsGo_api.security.oauth2;
 
-
 import com.letsgosportscards.letsGo_api.config.AppProperties;
 import com.letsgosportscards.letsGo_api.exception.BadRequestException;
 import com.letsgosportscards.letsGo_api.security.TokenProvider;

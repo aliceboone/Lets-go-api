@@ -1,8 +1,12 @@
 package com.letsgosportscards.letsGo_api.config;
 
+import com.letsgosportscards.letsGo_api.security.CustomUserDetailsService;
+import com.letsgosportscards.letsGo_api.security.RestAuthenticationEntryPoint;
+import com.letsgosportscards.letsGo_api.security.TokenAuthenticationFilter;
 import com.letsgosportscards.letsGo_api.security.oauth2.CustomOAuth2UserService;
 import com.letsgosportscards.letsGo_api.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.letsgosportscards.letsGo_api.security.oauth2.OAuth2AuthenticationFailureHandler;
+import com.letsgosportscards.letsGo_api.security.oauth2.OAuth2AuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,8 +52,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public TokenAuthenticationFilter tokenAuthenticationFilter() {
         return new TokenAuthenticationFilter();
     }
-
-
 
     /*
 By default, Spring OAuth2 uses HttpSessionOAuth2AuthorizationRequestRepository to save
