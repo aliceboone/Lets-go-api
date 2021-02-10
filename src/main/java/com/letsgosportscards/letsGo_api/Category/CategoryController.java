@@ -1,3 +1,5 @@
+
+
 package com.letsgosportscards.letsGo_api.Category;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +39,11 @@ public class CategoryController {
     // Update
     @PutMapping(path = "/{categoryId}")
     public void updateCategory(@PathVariable("categoryId") Long categoryId,
-                              @RequestBody Category category) {
-       categoryService.updateCategory(categoryId, category);
+                               @RequestBody Category category) {
+        categoryService.updateCategory(categoryId, category);
     }
 
-   //Delete
+    //Delete
     @DeleteMapping(path = "{categoryId}")
     public void deleteCategory(@PathVariable("categoryId") Long categoryId) {
         categoryService.deleteCategory(categoryId);

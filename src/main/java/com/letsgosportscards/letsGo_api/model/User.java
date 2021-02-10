@@ -27,9 +27,7 @@ public class User {
             allocationSize = 1
     )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
+            strategy = GenerationType.SEQUENCE)
     @Column(name = "id", updatable = false)
     private long id;
 
@@ -55,12 +53,14 @@ public class User {
 
     private String providerId;
 
-    @OneToMany(targetEntity= Product.class,
-    orphanRemoval = true,
-    cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-    fetch = FetchType.LAZY
-    )
+//    @OneToMany(targetEntity= Product.class,
+//    orphanRemoval = true,
+//    cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+//    fetch = FetchType.LAZY
+//    )
 
+    @JsonIgnore // prevents from serializing user
+    @OneToMany(mappedBy = "user")
     List<Product> products = new ArrayList<>();
 
     public User() {

@@ -1,7 +1,6 @@
 package com.letsgosportscards.letsGo_api.Product;
 
 import javax.persistence.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.letsgosportscards.letsGo_api.Category.Category;
 import com.letsgosportscards.letsGo_api.model.User;
 import lombok.Getter;
@@ -37,15 +36,13 @@ public class Product {
     private double price_sold;
     private double current_value;
 
-    @JsonIgnore // prevents from serializing user
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="category_id", nullable = false)
+    @ManyToOne
+//    @JoinColumn(name="category_id", nullable = false)
     private Category category;
 
-    @JsonIgnore // prevents from serializing user
-    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable=false)
-    private User User;
+    @ManyToOne
+//    @JoinColumn(name="user_id", nullable = false)
+    private User user;
 
     public Product() {
     }
@@ -73,6 +70,7 @@ public class Product {
         this.price_paid = price_paid;
         this.price_sold = price_sold;
         this.current_value = current_value;
-//        this.category = category;
+        this.category = category;
     }
 }
+

@@ -1,6 +1,6 @@
+
 package com.letsgosportscards.letsGo_api.Category;
 
-import com.letsgosportscards.letsGo_api.Category.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -30,10 +30,10 @@ public class CategoryService {
     public void addCategory(Category category) {
         Optional<Category> categoryOptional = categoryRepository
                 .findCategoryByName(category.getName());
-       if (categoryOptional.isPresent()) {
-           throw  new IllegalStateException("name taken");
-       }
-       categoryRepository.save(category);
+        if (categoryOptional.isPresent()) {
+            throw  new IllegalStateException("name taken");
+        }
+        categoryRepository.save(category);
     }
 
     public void deleteCategory(Long categoryId) {
@@ -46,7 +46,7 @@ public class CategoryService {
     }
 
     public void updateCategory(Long categoryId, Category category) {
-     Category checkCategory = categoryRepository.findById(categoryId)
+        Category checkCategory = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new IllegalStateException(
                         "category with id " + categoryId + " does not exists"
                 ));

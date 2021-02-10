@@ -31,15 +31,15 @@ public class ProductController {
     }
 
     //Create
-    @PostMapping(path = "/user/{userId}}",  consumes = "application/json")
-    public void addNewProduct(@PathVariable("userId") Long userId, @RequestBody Product product) {
-        productService.addNewProduct(product, userId);
+    @PostMapping(path = "/category/{categoryId}/user/{userId}",  consumes = "application/json")
+    public void registerNewProduct(@PathVariable("categoryId") Long categoryId, @PathVariable("userId") Long userId, @RequestBody Product product) {
+        productService.addNewProduct(product, categoryId, userId);
     }
 
     // Update
     @PutMapping(path = "/{productId}")
     public void updateProduct(@PathVariable("productId") Long productId,
-                            @RequestBody Product product) {
+                              @RequestBody Product product) {
         productService.updateProduct(productId, product);
     }
 
@@ -50,4 +50,3 @@ public class ProductController {
     }
 
 }
-

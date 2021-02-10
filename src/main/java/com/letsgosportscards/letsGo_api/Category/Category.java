@@ -1,6 +1,10 @@
+
+
 package com.letsgosportscards.letsGo_api.Category;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.letsgosportscards.letsGo_api.Product.Product;
 import lombok.*;
 import java.util.ArrayList;
@@ -22,6 +26,7 @@ public class Category {
     private Long id;
     private String name;
 
+    @JsonIgnore // prevents from serializing user
     @OneToMany(mappedBy = "category")
     List<Product> products = new ArrayList<>();
 
