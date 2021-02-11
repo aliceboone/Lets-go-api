@@ -23,7 +23,7 @@ public class Category {
             allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
     private String name;
 
     @JsonIgnore // prevents from serializing user
@@ -40,5 +40,13 @@ public class Category {
 
     public Category(String name) {
         this.name = name;
+    }
+
+    public void addProduct(Product product) {
+        product.setCategory(this);
+        products.add(product);
+    }
+
+    public void setProduct(Product product) {
     }
 }

@@ -111,7 +111,7 @@ the session. We'll save the request in a Base64 encoded cookie instead.
                         "/**/*.css",
                         "/**/*.js")
                 .permitAll()
-                .antMatchers("/auth/**", "/oauth2/**", "/recipes", "/recipes/**", "/ingredients")
+                .antMatchers("/auth/**", "/oauth2/**", "/products", "/products/**", "/categories")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

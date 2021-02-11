@@ -2,6 +2,9 @@
 package com.letsgosportscards.letsGo_api.Category;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -15,11 +18,21 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
+    public String authenticateUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            return currentUserName;
+        } else {
+            throw new IllegalStateException("Can't now find this user");
+        }
+    }
+
     public List<Category> getCategories() {
         return categoryRepository.findAll();
     }
 
-    public Category showCategory(Long categoryId) {
+    public Category showCategory(long categoryId) {
         Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new IllegalStateException(
                         "Category with ID: " + categoryId + " does not exist"
@@ -36,7 +49,7 @@ public class CategoryService {
         categoryRepository.save(category);
     }
 
-    public void deleteCategory(Long categoryId) {
+    public void deleteCategory(long categoryId) {
         boolean exists = categoryRepository.existsById(categoryId);
         if(!exists) {
             throw new IllegalStateException(
@@ -45,7 +58,7 @@ public class CategoryService {
         categoryRepository.deleteById(categoryId);
     }
 
-    public void updateCategory(Long categoryId, Category category) {
+    public void updateCategory(long categoryId, Category category) {
         Category checkCategory = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new IllegalStateException(
                         "category with id " + categoryId + " does not exists"

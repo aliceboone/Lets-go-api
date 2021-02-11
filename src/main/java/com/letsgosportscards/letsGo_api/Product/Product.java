@@ -22,19 +22,23 @@ public class Product {
     @GeneratedValue(
             strategy = GenerationType.AUTO)
 
-    private Long id;
+    private long id;
     private String playerName;
-    private String imageUrl;
+    private String imageUrl1;
+    private String imageUrl2;
     private String brand;
-    private String setName;
+    private String notes;
+    private String setName;;
+    private String team;
+    private String cardCondition;
     private String description;
     private int grade;
-    private int inventory;
-    private int card_number;
+    private int cardNumber;
     private int releaseYear;
-    private double price_paid;
-    private double price_sold;
-    private double current_value;
+    private double pricePaid;
+    private double priceSold;
+    private double currentValue;
+
 
     @ManyToOne
 //    @JoinColumn(name="category_id", nullable = false)
@@ -47,30 +51,40 @@ public class Product {
     public Product() {
     }
 
-    public Product(String playerName, String imageUrl,
+    public Product(String playerName,
+                   String imageUrl1,
+                   String imageUrl2,
                    String brand,
+                   String notes,
                    String setName,
+                   String team,
+                   String cardCondition,
                    String description,
                    int grade,
-                   int inventory,
-                   int card_number,
+                   int cardNumber,
                    int releaseYear,
-                   double price_paid,
-                   double price_sold,
-                   double current_value) {
+                   double pricePaid,
+                   double priceSold,
+                   double currentValue,
+                   Category category,
+                   User user) {
         this.playerName = playerName;
-        this.imageUrl = imageUrl;
+        this.imageUrl1 = imageUrl1;
+        this.imageUrl2 = imageUrl2;
         this.brand = brand;
+        this.notes = notes;
         this.setName = setName;
+        this.team = team;
+        this.cardCondition = cardCondition;
         this.description = description;
         this.grade = grade;
-        this.inventory = inventory;
-        this.card_number = card_number;
+        this.cardNumber = cardNumber;
         this.releaseYear = releaseYear;
-        this.price_paid = price_paid;
-        this.price_sold = price_sold;
-        this.current_value = current_value;
+        this.pricePaid = pricePaid;
+        this.priceSold = priceSold;
+        this.currentValue = currentValue;
         this.category = category;
+        this.user = user;
     }
 }
 

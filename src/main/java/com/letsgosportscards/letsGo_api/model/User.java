@@ -53,12 +53,6 @@ public class User {
 
     private String providerId;
 
-//    @OneToMany(targetEntity= Product.class,
-//    orphanRemoval = true,
-//    cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-//    fetch = FetchType.LAZY
-//    )
-
     @JsonIgnore // prevents from serializing user
     @OneToMany(mappedBy = "user")
     List<Product> products = new ArrayList<>();
@@ -72,6 +66,13 @@ public class User {
     }
 
 
+    public void addProduct(Product savedProduct) {
+        if (!this.products.contains(savedProduct)) {
+            this.products.add(savedProduct);
+            savedProduct.setUser(this);
+        }
+    }
 }
+
 
 
