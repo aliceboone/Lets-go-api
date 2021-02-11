@@ -1,6 +1,10 @@
 package com.letsgosportscards.letsGo_api.Product;
 
 import com.letsgosportscards.letsGo_api.User.UserRepository;
+import com.letsgosportscards.letsGo_api.exception.ResourceNotFoundException;
+import com.letsgosportscards.letsGo_api.model.User;
+import com.letsgosportscards.letsGo_api.security.CurrentUser;
+import com.letsgosportscards.letsGo_api.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,31 +25,36 @@ public class ProductController {
 
     // Index
     @GetMapping
-    public List<Product> getProducts() {
+    public List<Product> getProducts(@CurrentUser UserPrincipal userPrincipal) {
+        User user = userRepository.findById(userPrincipal.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
+
         return productService.getProducts();
     }
     //Show
     @GetMapping(path = "/{productId}")
-    public Product showProduct(@PathVariable("productId") Long productId) {
+    public Product showProduct(@PathVariable("productId") long productId) {
         return productService.showProduct(productId);
     }
 
     //Create
-    @PostMapping(path = "/category/{categoryId}/user/{userId}",  consumes = "application/json")
-    public void registerNewProduct(@PathVariable("categoryId") Long categoryId, @PathVariable("userId") Long userId, @RequestBody Product product) {
-        productService.addNewProduct(product, categoryId, userId);
+    @PostMapping(consumes = "application/json")
+    public void addProduct(@CurrentUser UserPrincipal userPrincipal, @RequestBody Product product) {
+        User user = userRepository.findById(userPrincipal.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
+        productService.addNewProduct(product, user.getId());
     }
 
     // Update
     @PutMapping(path = "/{productId}")
-    public void updateProduct(@PathVariable("productId") Long productId,
+    public void updateProduct(@PathVariable("productId") long productId,
                               @RequestBody Product product) {
         productService.updateProduct(productId, product);
     }
 
     //Delete
     @DeleteMapping(path = "{productId}")
-    public void deleteProduct(@PathVariable("productId") Long productId) {
+    public void deleteProduct(@PathVariable("productId") long productId) {
         productService.deleteProduct(productId);
     }
 

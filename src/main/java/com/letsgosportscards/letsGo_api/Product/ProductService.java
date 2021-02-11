@@ -36,9 +36,12 @@ public class ProductService {
         return product;
     }
 
-    public void addNewProduct(Product product, Long categoryId, Long userId) {
+    public void addNewProduct(Product product, long userId) {
+        if(product.getImageUrl1() == null || product.getImageUrl1() == ""){
+            product.setImageUrl1("https://i.ibb.co/r5CKkGV/cards-baseball-card-hd.jpg");
+        }
         Category category = categoryRepository
-                .findById(categoryId)
+                .findCategoryByName(product.getCategory().getName())
                 .orElseThrow(() -> new IllegalStateException("Category does not exists"));
         User user = userRepository
                 .findById(userId)
@@ -48,6 +51,7 @@ public class ProductService {
         if (productOptional.isPresent()) {
             throw  new IllegalStateException("Not able to add product");
         }
+        category.addProduct(product);
         product.setCategory(category);
         product.setUser(user);
         productRepository.save(product);
@@ -61,14 +65,14 @@ public class ProductService {
                 ));
         checkProduct.setPlayerName( product.getPlayerName());
         checkProduct.setBrand( product.getBrand());
-        checkProduct.setCard_number( product.getCard_number());
-        checkProduct.setCurrent_value( product.getCurrent_value());
+        checkProduct.setCardNumber( product.getCardNumber());
+        checkProduct.setCurrentValue( product.getCurrentValue());
         checkProduct.setSetName( product.getSetName());
         checkProduct.setDescription( product.getDescription());
-        checkProduct.setImageUrl( product.getImageUrl());
-        checkProduct.setPrice_paid( product.getPrice_paid());
-        checkProduct.setPrice_sold( product.getPrice_sold());
-        checkProduct.setInventory( product.getInventory());
+        checkProduct.setImageUrl1( product.getImageUrl1());
+        checkProduct.setImageUrl2( product.getImageUrl2());
+        checkProduct.setPricePaid( product.getPricePaid());
+        checkProduct.setPriceSold( product.getPriceSold());
         checkProduct.setReleaseYear( product.getReleaseYear());
         checkProduct.setCategory( product.getCategory());
         productRepository.save(checkProduct);
