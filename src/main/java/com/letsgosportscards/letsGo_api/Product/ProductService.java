@@ -28,7 +28,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product showProduct(Long productId) {
+    public Product showProduct(long productId) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalStateException(
                         "Product with ID: " + productId + " does not exist"
@@ -58,7 +58,7 @@ public class ProductService {
     }
 
     @Transactional
-    public void updateProduct(Long productId, Product product) {
+    public void updateProduct(long productId, Product product) {
         Product checkProduct = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalStateException(
                         "product with id " + productId + " does not exists"
@@ -78,7 +78,7 @@ public class ProductService {
         productRepository.save(checkProduct);
     }
 
-    public void deleteProduct(Long productId) {
+    public void deleteProduct(long productId) {
         boolean exists = productRepository.existsById(productId);
         if(!exists) {
             throw new IllegalStateException(
