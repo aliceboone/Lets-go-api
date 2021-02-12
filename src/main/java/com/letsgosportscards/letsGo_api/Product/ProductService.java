@@ -59,6 +59,13 @@ public class ProductService {
 
     @Transactional
     public void updateProduct(long productId, Product product) {
+//        User user = userRepository
+//                .findById(userId)
+//                .orElseThrow(() -> new IllegalStateException("User does not exists"));
+
+        Category category = categoryRepository
+                .findCategoryByName(product.getCategory().getName())
+                .orElseThrow(() -> new IllegalStateException("Category does not exists"));
         Product checkProduct = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalStateException(
                         "product with id " + productId + " does not exists"
@@ -74,7 +81,7 @@ public class ProductService {
         checkProduct.setPricePaid( product.getPricePaid());
         checkProduct.setPriceSold( product.getPriceSold());
         checkProduct.setReleaseYear( product.getReleaseYear());
-        checkProduct.setCategory( product.getCategory());
+        checkProduct.setCategory( category);
         productRepository.save(checkProduct);
     }
 
