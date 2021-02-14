@@ -24,11 +24,13 @@ public class ProductService {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<Product> getProducts() {
-        return productRepository.findAll();
+    public List<Product> getProducts(long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException("user does not exist"));
+        return user.getProducts();
     }
 
-    public Product showProduct(long productId) {
+    public Product showProduct(long userId, long productId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException("user does not exist"));
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalStateException(
                         "Product with ID: " + productId + " does not exist"
@@ -62,7 +64,6 @@ public class ProductService {
 //        User user = userRepository
 //                .findById(userId)
 //                .orElseThrow(() -> new IllegalStateException("User does not exists"));
-
         Category category = categoryRepository
                 .findCategoryByName(product.getCategory().getName())
                 .orElseThrow(() -> new IllegalStateException("Category does not exists"));
@@ -75,7 +76,7 @@ public class ProductService {
         checkProduct.setCardNumber( product.getCardNumber());
         checkProduct.setCurrentValue( product.getCurrentValue());
         checkProduct.setSetName( product.getSetName());
-        checkProduct.setDescription( product.getDescription());
+        checkProduct.setGradedBy( product.getGradedBy());
         checkProduct.setImageUrl1( product.getImageUrl1());
         checkProduct.setImageUrl2( product.getImageUrl2());
         checkProduct.setPricePaid( product.getPricePaid());

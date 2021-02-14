@@ -24,21 +24,20 @@ public class Product {
 
     private long id;
     private String playerName;
-    private String imageUrl1;
-    private String imageUrl2;
+    private int releaseYear;
     private String brand;
-    private String notes;
     private String setName;;
     private String team;
-    private String cardCondition;
-    private String description;
-    private int grade;
     private int cardNumber;
-    private int releaseYear;
+    private String cardCondition;
+    private int grade;
+    private String gradedBy;
+    private double currentValue;
     private double pricePaid;
     private double priceSold;
-    private double currentValue;
-
+    private String notes;
+    private String imageUrl1;
+    private String imageUrl2;
 
     @ManyToOne
 //    @JoinColumn(name="category_id", nullable = false)
@@ -51,38 +50,39 @@ public class Product {
     public Product() {
     }
 
-    public Product(String playerName,
-                   String imageUrl1,
-                   String imageUrl2,
+    public Product(long id, String playerName,
+                   int releaseYear,
                    String brand,
-                   String notes,
                    String setName,
                    String team,
-                   String cardCondition,
-                   String description,
-                   int grade,
                    int cardNumber,
-                   int releaseYear,
+                   String cardCondition,
+                   int grade,
+                   String gradedBy,
+                   double currentValue,
                    double pricePaid,
                    double priceSold,
-                   double currentValue,
+                   String notes,
+                   String imageUrl1,
+                   String imageUrl2,
                    Category category,
                    User user) {
+        this.id = id;
         this.playerName = playerName;
-        this.imageUrl1 = imageUrl1;
-        this.imageUrl2 = imageUrl2;
+        this.releaseYear = releaseYear;
         this.brand = brand;
-        this.notes = notes;
         this.setName = setName;
         this.team = team;
-        this.cardCondition = cardCondition;
-        this.description = description;
-        this.grade = grade;
         this.cardNumber = cardNumber;
-        this.releaseYear = releaseYear;
+        this.cardCondition = cardCondition;
+        this.grade = grade;
+        this.gradedBy = gradedBy;
+        this.currentValue = currentValue;
         this.pricePaid = pricePaid;
         this.priceSold = priceSold;
-        this.currentValue = currentValue;
+        this.notes = notes;
+        this.imageUrl1 = imageUrl1;
+        this.imageUrl2 = imageUrl2;
         this.category = category;
         this.user = user;
     }

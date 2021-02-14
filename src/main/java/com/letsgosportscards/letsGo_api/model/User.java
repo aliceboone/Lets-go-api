@@ -3,9 +3,9 @@ package com.letsgosportscards.letsGo_api.model;
 import com.letsgosportscards.letsGo_api.Product.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +45,6 @@ public class User {
 
     @JsonIgnore
     private String password;
-    //
     @NotNull
     @Column
     @Enumerated(EnumType.STRING)
@@ -64,7 +63,6 @@ public class User {
         this.name = name;
         this.email = email;
     }
-
 
     public void addProduct(Product savedProduct) {
         if (!this.products.contains(savedProduct)) {

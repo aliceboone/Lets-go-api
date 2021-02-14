@@ -28,13 +28,12 @@ public class ProductController {
     public List<Product> getProducts(@CurrentUser UserPrincipal userPrincipal) {
         User user = userRepository.findById(userPrincipal.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
-
-        return productService.getProducts();
+        return productService.getProducts(user.getId());
     }
     //Show
     @GetMapping(path = "/{productId}")
-    public Product showProduct(@PathVariable("productId") long productId) {
-        return productService.showProduct(productId);
+    public Product showProduct(@PathVariable long userId,@PathVariable("productId") long productId) {
+        return productService.showProduct(userId, productId);
     }
 
     //Create
@@ -47,9 +46,12 @@ public class ProductController {
 
     // Update
     @PutMapping(path = "/{productId}")
-    public void updateProduct(@PathVariable("productId") long productId,
+    public void updateProduct(@CurrentUser UserPrincipal userPrincipal, @PathVariable long productId,
                               @RequestBody Product product) {
+//        User user = userRepository.findById(userPrincipal.getId())
+//                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
         productService.updateProduct(productId, product);
+
     }
 
     //Delete
