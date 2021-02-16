@@ -29,8 +29,7 @@ public class ProductService {
         return user.getProducts();
     }
 
-    public Product showProduct(long userId, long productId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException("user does not exist"));
+    public Product showProduct(long productId) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalStateException(
                         "Product with ID: " + productId + " does not exist"

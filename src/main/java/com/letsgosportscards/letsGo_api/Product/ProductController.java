@@ -32,8 +32,8 @@ public class ProductController {
     }
     //Show
     @GetMapping(path = "/{productId}")
-    public Product showProduct(@PathVariable long userId,@PathVariable("productId") long productId) {
-        return productService.showProduct(userId, productId);
+    public Product showProduct(@PathVariable("productId") long productId) {
+        return productService.showProduct(productId);
     }
 
     //Create
@@ -48,8 +48,6 @@ public class ProductController {
     @PutMapping(path = "/{productId}")
     public void updateProduct(@CurrentUser UserPrincipal userPrincipal, @PathVariable long productId,
                               @RequestBody Product product) {
-//        User user = userRepository.findById(userPrincipal.getId())
-//                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
         productService.updateProduct(productId, product);
 
     }
