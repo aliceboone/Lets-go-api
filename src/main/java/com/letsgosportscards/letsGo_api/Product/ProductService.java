@@ -60,9 +60,6 @@ public class ProductService {
 
     @Transactional
     public void updateProduct(long productId, Product product) {
-//        User user = userRepository
-//                .findById(userId)
-//                .orElseThrow(() -> new IllegalStateException("User does not exists"));
         Category category = categoryRepository
                 .findCategoryByName(product.getCategory().getName())
                 .orElseThrow(() -> new IllegalStateException("Category does not exists"));
